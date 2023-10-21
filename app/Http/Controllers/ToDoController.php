@@ -12,7 +12,10 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        return "Some text";
+        $todo = ToDo::all();
+        foreach ($todo as $do) {
+            dump($do->title);
+        }
     }
 
     /**
@@ -20,7 +23,24 @@ class ToDoController extends Controller
      */
     public function create()
     {
-        //
+        $todoarr = [
+            [
+                "title" => "Do homework of Netology",
+                "description" => "Read documentation about MVC on Laravel. Create project and try to do step by step tasks of home work",
+                "is_completed" => true,
+            ],
+            [
+                "title" => "Do homework 2 of Netology",
+                "description" => "Read documentation 2 about MVC on Laravel. Create project and try to do step by step tasks of home work",
+                "is_completed" => true,
+            ]
+        ];
+
+        foreach ($todoarr as $todo) {
+            ToDo::created($todo);
+        }
+
+        dd("created");
     }
 
     /**
