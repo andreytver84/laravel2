@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ToDoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/todo', 'ToDoController@index');
+Route::get('/todo', [ToDoController::class,'index']);
 
-//Route::get('/todo/create', 'ToDoController@create');
+Route::get('/todo/create', [ToDoController::class,'create']);
 
-//Route::get('/todo{id}', 'ToDoController@show');
+Route::get('/todo{id}', [ToDoController::class,'show']);
