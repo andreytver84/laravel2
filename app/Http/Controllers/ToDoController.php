@@ -37,9 +37,9 @@ class ToDoController extends Controller
         ];
 
         foreach ($todoarr as $todo) {
-            ToDo::created($todo);
+            ToDo::create($todo);
         }
-
+        
         dd("created");
     }
 

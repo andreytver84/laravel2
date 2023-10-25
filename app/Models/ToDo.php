@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ToDo extends Model
 {
-    protected $table = 'todo';
     protected $guarded = [];
-
     use HasFactory;
 }
