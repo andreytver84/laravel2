@@ -18,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/todo', [ToDoController::class,'index']);
+Route::get('/todo', [ToDoController::class,'index'])->name('todo.index');
 
-Route::get('/todo/create', [ToDoController::class,'create']);
+Route::get('/todo/create', [ToDoController::class,'create'])->name('todo.create');
 
-Route::get('/todo{id}', [ToDoController::class,'show']);
+Route::post('/todo', [ToDoController::class,'store'])->name('todo.store');
+
+Route::get('/todo/{todo}', [ToDoController::class,'show'])->name('todo.show');

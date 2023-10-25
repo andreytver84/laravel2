@@ -13,9 +13,7 @@ class ToDoController extends Controller
     public function index()
     {
         $todo = ToDo::all();
-        foreach ($todo as $do) {
-            dump($do->title);
-        }
+        return view('todo.index',compact('todo'));
     }
 
     /**
@@ -23,40 +21,29 @@ class ToDoController extends Controller
      */
     public function create()
     {
-        $todoarr = [
-            [
-                "title" => "Do homework of Netology",
-                "description" => "Read documentation about MVC on Laravel. Create project and try to do step by step tasks of home work",
-                "is_completed" => true,
-            ],
-            [
-                "title" => "Do homework 2 of Netology",
-                "description" => "Read documentation 2 about MVC on Laravel. Create project and try to do step by step tasks of home work",
-                "is_completed" => true,
-            ]
-        ];
-
-        foreach ($todoarr as $todo) {
-            ToDo::create($todo);
-        }
-        
-        dd("created");
+        return view('todo.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
+    //public function store()
     {
-        //
+        $data = request()->validate([
+            'title'=>'',
+            'description'=>''
+        ]);
+        ToDo::create($data);
+        return redirect()->route('todo.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ToDo $toDo)
+    public function show(ToDo $todo)
     {
-        //
+        return view('todo.show',compact('todo'));
     }
 
     /**
